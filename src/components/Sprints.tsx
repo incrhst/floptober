@@ -11,7 +11,7 @@ export function Sprints() {
       <div className="mx-auto w-full max-w-5xl px-6">
         <div className="flex flex-col items-center justify-center text-center">
           <h2 id="sprints-heading" className="font-hand text-4xl text-flop-ink sm:text-5xl">
-            Weekly Exposure Sprints
+            Weekly Exposure Test Runs
           </h2>
           <p className="mt-2 max-w-xl font-body text-base text-flop-ink/70">
             Four weeks, escalating from mild cringe to a full public burial.

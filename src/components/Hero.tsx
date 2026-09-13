@@ -19,7 +19,7 @@ export function Hero() {
             </li>
             <li>
               <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#sprints">
-                Sprints
+                Test Runs
               </a>
             </li>
             <li>
@@ -65,7 +65,7 @@ export function Hero() {
             <div className="mt-9" id="join">
               <JoinButton>Join Him</JoinButton>
               <p className="mt-4 font-body text-sm font-semibold text-flop-ink/60">
-                One month. Four sprints. Zero dignity required.
+                One month. Four test runs. Zero dignity required.
               </p>
             </div>
           </motion.div>
