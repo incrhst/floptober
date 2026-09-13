@@ -35,9 +35,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease }}>
-            <p className="mb-2 font-hand text-2xl text-flop-sea sm:text-3xl -rotate-1">
-              David Bain would like to invite you to his
-            </p>
+            <div className="mb-2 flex items-center gap-4 -rotate-1">
+              <img
+                src="https://cdn.prod.website-files.com/6648e694572e95ad568c26b9/664aa8a50c2191226309bb5a_dbain-logo.png"
+                alt="David Bain"
+                className="h-14 w-14 sm:h-16 sm:w-16 rounded-full border-[3px] border-flop-ink shadow-sm bg-flop-cream object-cover"
+              />
+              <p className="font-hand text-2xl text-flop-sea sm:text-3xl">
+                David Bain would like to invite you to his
+              </p>
+            </div>
             <h1 className="font-hand text-[clamp(3.5rem,11vw,8.5rem)] leading-[0.85] text-flop-ink">
               Floptober
             </h1>
