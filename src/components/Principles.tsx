@@ -18,12 +18,14 @@ export function Principles() {
           {principles.map((principle, i) =>
           <li
             key={principle.title}
-            className={`flex h-full flex-col rounded-blob border-[3px] border-flop-ink bg-[#f3ecd5] p-7 shadow-chunk ${tilts[i]}`}>
+            className={`flex h-full flex-col rounded-blob border-[3px] border-flop-ink bg-flop-cream p-7 shadow-chunk ${tilts[i]}`}>
             
-              <img
-              src={principle.icon}
-              alt={principle.iconAlt}
-              className="h-24 w-24 object-contain mix-blend-multiply" />
+              <div className="w-fit">
+                <img
+                src={principle.icon}
+                alt={principle.iconAlt}
+                className="h-24 w-24 object-cover border-[3px] border-flop-ink/80 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] -rotate-3 hover:rotate-2 transition-transform shadow-sm" />
+              </div>
             
               <h3 className="mt-4 font-hand text-3xl text-flop-sea">{principle.title}</h3>
               <p className="mt-3 font-body text-base leading-relaxed text-flop-ink/80">{principle.body}</p>
