@@ -35,7 +35,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease }}>
-            
+            <p className="mb-2 font-hand text-2xl text-flop-sea sm:text-3xl -rotate-1">
+              David Bain would like to invite you to his
+            </p>
             <h1 className="font-hand text-[clamp(3.5rem,11vw,8.5rem)] leading-[0.85] text-flop-ink">
               Floptober
             </h1>
