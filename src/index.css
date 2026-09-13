@@ -48,6 +48,7 @@ body {
   background-image: url('/graveyard-texture.png');
   background-size: 800px;
   background-repeat: repeat;
+  background-attachment: fixed;
   opacity: 0.15;
   mix-blend-mode: luminosity;
   pointer-events: none;
