@@ -14,10 +14,10 @@ export function ClosingCall() {
         <h2 className="font-hand text-4xl leading-tight text-flop-ink sm:text-5xl">
           Losers launch. <span className="text-flop-crimson">Winners learn.</span>
         </h2>
-        <p className="max-w-xl font-body text-base text-flop-ink/75">
+        <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-flop-ink/75 sm:text-xl">
           Sign up, pick your first embarrassment, and start filling the graveyard.
         </p>
-        <JoinButton>Join the Game!</JoinButton>
+        <JoinButton>Join Him</JoinButton>
         <p className="pt-6 font-hand text-lg text-flop-ink/50">Floptober — October, annually, forever.</p>
       </div>
     </footer>);

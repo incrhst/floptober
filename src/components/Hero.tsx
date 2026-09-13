@@ -63,7 +63,7 @@ export function Hero() {
             </div>
 
             <div className="mt-9" id="join">
-              <JoinButton>Join the Game!</JoinButton>
+              <JoinButton>Join Him</JoinButton>
               <p className="mt-4 font-body text-sm font-semibold text-flop-ink/60">
                 One month. Four sprints. Zero dignity required.
               </p>
