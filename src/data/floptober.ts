@@ -23,7 +23,7 @@ export const principles: Principle[] = [
   icon: "/ed3790b5-eb33-46e5-91ea-a9a450760379.jpg",
   iconAlt: 'Doodle of a duct-taped toy rocket puffing smoke',
   title: 'Effort Over Polish',
-  body: 'Half-assing something in public beats whole-assing it in secret.'
+  body: 'Half-baking something in public beats over-baking it in secret.'
 },
 {
   icon: "/235b1ea5-b249-4e9e-9682-611041503eab.jpg",
