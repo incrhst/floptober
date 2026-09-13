@@ -43,30 +43,30 @@ export const sprints: Sprint[] = [
 {
   index: '01',
   week: 'Week One',
-  title: 'The Social Flop',
+  title: 'The Public Flop',
   theme: 'Cringe & Visibility',
-  body: 'Publish raw, unpolished work publicly. Share an unfinished concept, an awkward video, or an unconventional opinion with no disclaimers.'
+  body: 'Break identity attachment by publishing raw, unedited takes or demos publicly. Hard rule: zero apologies, caveats, or disclaimers allowed.'
 },
 {
   index: '02',
   week: 'Week Two',
-  title: 'The Rejection Gauntlet',
-  theme: 'Direct Outreach',
-  body: 'Aim for 10 explicit "No"s. Pitch an out-of-reach client, ask for an unreasonable discount, or propose an ambitious partnership. Silence doesn\'t count.'
+  title: 'The Janky Prototype',
+  theme: 'Execution Speed',
+  body: 'Ship a half-baked product, landing page, or service package capped at a strict 48 hours. Requires a working buy/signup link, even if the backend is just a manual Google Sheet.'
 },
 {
   index: '03',
   week: 'Week Three',
-  title: 'The Janky Prototype',
-  theme: 'Execution Speed',
-  body: 'Build and ship something broken in 48 hours. A landing page with no backend, a micro-tool that crashes, or a one-page offer. Launch it before you feel ready.'
+  title: 'The Rejection Gauntlet',
+  theme: 'Direct Outreach',
+  body: 'Collect 10 explicit, synchronous "No"s while trying to sell or pitch your Week 2 prototype. Face-to-face, voice, or live DMs only—asynchronous cold email takes too long.'
 },
 {
   index: '04',
   week: 'Week Four',
-  title: 'The Eulogy',
+  title: 'The Eulogy & Re-Up',
   theme: 'Integration',
-  body: 'Crown the "Worst Flop of October." Share the biggest swing that completely missed, examine the wreckage, and celebrate the fact that everyone is still alive.'
+  body: 'Deconstruct the wreckage and award the worst failure. Then, execute the 24-Hour Iteration Rule: take your worst flop, make one adjustment based on real feedback, and push it live again.'
 }];
 
 
