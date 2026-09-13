@@ -18,7 +18,7 @@ export function Principles() {
           {principles.map((principle, i) =>
           <li
             key={principle.title}
-            className={`flex h-full flex-col rounded-blob border-[3px] border-flop-ink/85 bg-flop-cream p-7 shadow-chunk ${tilts[i]}`}>
+            className={`flex h-full flex-col rounded-blob border-[3px] border-flop-ink bg-[#f3ecd5] p-7 shadow-chunk ${tilts[i]}`}>
             
               <img
               src={principle.icon}
