@@ -20,11 +20,11 @@ export function Principles() {
             key={principle.title}
             className={`flex h-full flex-col rounded-blob border-[3px] border-flop-ink bg-flop-cream p-7 shadow-chunk ${tilts[i]}`}>
             
-              <div className="w-fit">
+              <div className="w-fit mx-auto md:mx-0">
                 <img
                 src={principle.icon}
                 alt={principle.iconAlt}
-                className="h-36 w-36 object-cover border-[3px] border-flop-ink/80 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] -rotate-3 hover:rotate-2 transition-transform shadow-sm" />
+                className="h-56 w-56 object-cover border-[3px] border-flop-ink/80 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] -rotate-3 hover:rotate-2 transition-transform shadow-sm" />
               </div>
             
               <h3 className="mt-4 font-hand text-3xl text-flop-sea">{principle.title}</h3>
