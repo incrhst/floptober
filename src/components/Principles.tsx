@@ -24,7 +24,7 @@ export function Principles() {
                 <img
                 src={principle.icon}
                 alt={principle.iconAlt}
-                className="h-24 w-24 object-cover border-[3px] border-flop-ink/80 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] -rotate-3 hover:rotate-2 transition-transform shadow-sm" />
+                className="h-36 w-36 object-cover border-[3px] border-flop-ink/80 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] -rotate-3 hover:rotate-2 transition-transform shadow-sm" />
               </div>
             
               <h3 className="mt-4 font-hand text-3xl text-flop-sea">{principle.title}</h3>
