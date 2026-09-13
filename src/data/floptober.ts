@@ -82,3 +82,47 @@ export const graveyardImage = "/c533fa06-abb2-44ca-8725-ddda23f01b42.jpg";
 
 
 export const mascotImage = "/82c879c0-607a-4ac2-8f66-6e23f41b4a17.jpg";
+
+export interface Persona {
+  title: string;
+  description: string;
+}
+
+export const personas: Persona[] = [
+  {
+    title: 'The Bedroom Producer',
+    description: "Your hard drive is a graveyard of 8-bar loops. You're convinced you can't drop a track until a pro mixes it."
+  },
+  {
+    title: 'The Stealth-Mode Dev',
+    description: "You've been building in secret for six months, endlessly refactoring schemas instead of shipping an ugly MVP to actual users."
+  },
+  {
+    title: 'The Lurker Substacker',
+    description: "You're hoarding 40 drafts in your Notes app, paralyzed by the fear that publishing a raw, opinionated essay will get zero reads."
+  },
+  {
+    title: 'The Boutique Solo Pro',
+    description: "You're terrified of cold outreach or posting your high-ticket pricing publicly because you dread being left on 'read'."
+  },
+  {
+    title: 'The Hardware Hacker',
+    description: "You're tinkering indefinitely with rough breadboards and 3D prints, dreading the feedback on a non-factory-grade enclosure."
+  },
+  {
+    title: 'The Course Creator',
+    description: "Trapped in slide-deck and syllabus design purgatory instead of pre-selling a rough, live 3-person pilot."
+  },
+  {
+    title: 'The Raw Comic',
+    description: "You polish material in a notebook forever, dodging open mics to protect your ego-shield of being 'the funny friend'."
+  },
+  {
+    title: 'The Indie Brand',
+    description: "You're shelving physical inventory because the logo, custom packaging, or unboxing experience isn't luxury-tier yet."
+  },
+  {
+    title: 'The Perfectionist Podcaster',
+    description: "You obsess over mic gain and studio lighting instead of posting a raw, one-take phone video."
+  }
+];
