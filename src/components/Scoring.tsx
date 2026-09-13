@@ -7,7 +7,7 @@ export function Scoring() {
       <div className="mx-auto w-full max-w-4xl px-6">
         <div className="flex flex-col items-center justify-center text-center">
           <h2 id="scoring-heading" className="font-hand text-4xl text-flop-ink sm:text-5xl">
-            # Scoring Matrix
+            Scoring Matrix
           </h2>
           <p className="mt-2 font-body text-base text-flop-ink/75">
             Points are awarded strictly for initiating contact with reality.
