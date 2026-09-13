@@ -9,7 +9,7 @@ export function Principles() {
       <div className="mx-auto w-full max-w-6xl px-6 relative z-10">
         <div className="flex items-end gap-3">
           <h2 id="principles-heading" className="font-hand text-4xl text-flop-ink sm:text-5xl">
-            ★ Core Principles
+            Core Principles
           </h2>
         </div>
         <div className="mt-3 h-[3px] w-24 rounded-full bg-flop-ink/25" />

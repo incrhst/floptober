@@ -18,7 +18,7 @@ export function ClosingCall() {
           Sign up, pick your first embarrassment, and start filling the graveyard.
         </p>
         <JoinButton>Join the Game!</JoinButton>
-        <p className="pt-6 font-hand text-lg text-flop-ink/50">★♡ Floptober — October, annually, forever.</p>
+        <p className="pt-6 font-hand text-lg text-flop-ink/50">Floptober — October, annually, forever.</p>
       </div>
     </footer>);
 

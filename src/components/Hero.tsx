@@ -10,7 +10,7 @@ export function Hero() {
     <header className="relative overflow-hidden bg-flop-yellow bg-dots">
       <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-8">
         <nav aria-label="Primary" className="flex items-center justify-between gap-4">
-          <span className="font-hand text-xl text-flop-ink">★♡ Floptober</span>
+          <span className="font-hand text-xl text-flop-ink">Floptober</span>
           <ul className="hidden items-center gap-7 font-body text-sm font-bold uppercase tracking-[0.14em] text-flop-ink/70 sm:flex">
             <li>
               <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#principles">

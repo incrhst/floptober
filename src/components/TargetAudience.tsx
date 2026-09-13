@@ -10,7 +10,7 @@ export function TargetAudience() {
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="flex items-end gap-3 justify-center text-center">
           <h2 id="audience-heading" className="font-hand text-4xl text-flop-ink sm:text-5xl">
-            ★ Who is this for?
+            Who is this for?
           </h2>
         </div>
         <p className="mt-4 text-center font-body text-xl font-bold text-flop-ink/80 max-w-2xl mx-auto">
