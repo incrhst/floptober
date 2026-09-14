@@ -1,6 +1,7 @@
 import React from 'react';
 import { JoinButton } from './JoinButton';
 import { mascotImage } from '../data/floptober';
+import { Term } from './Term';
 
 export function ClosingCall() {
   return (
@@ -15,7 +16,7 @@ export function ClosingCall() {
           Losers launch. <span className="text-flop-crimson">Winners learn.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-flop-ink/75 sm:text-xl">
-          Sign up, pick your first embarrassment, and start filling the scrapheap.
+          Sign up, pick your first embarrassment, and start filling the <Term id="scrapheap">scrapheap</Term>.
         </p>
         <JoinButton>Join Him</JoinButton>
         <div className="pt-6 flex flex-col gap-2 items-center">

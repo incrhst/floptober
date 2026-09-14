@@ -7,6 +7,7 @@ import { SignInButton, UserButton } from '@clerk/nextjs';
 import { Show } from './Show';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
+import { Term } from "./Term";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -186,7 +187,7 @@ export function Hero() {
               
             </div>
             <figcaption className="mt-3 text-center font-hand text-lg text-flop-ink/70">
-              The Scrapheap, currently accepting donations.
+              The <Term id="scrapheap">Scrapheap</Term>, currently accepting donations.
             </figcaption>
           </motion.figure>
         </div>
