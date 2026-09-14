@@ -20,11 +20,11 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   metadataBase: new URL("https://floptober.netlify.app"),
   title: "Floptober | Digital Wreckage & Learning",
-  description: "The objective is simple: desensitize the cohort to rejection and public embarrassment.",
+  description: "The objective is simple: desensitize participants to rejection and public embarrassment.",
   openGraph: {
     siteName: "Floptober",
     title: "Floptober | Digital Wreckage & Learning",
-    description: "The objective is simple: desensitize the cohort to rejection and public embarrassment.",
+    description: "The objective is simple: desensitize participants to rejection and public embarrassment.",
   },
 };
 

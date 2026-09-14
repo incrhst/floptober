@@ -7,7 +7,7 @@ export const glossaryTerms = [
   {
     id: "scrapheap",
     term: "The Scrapheap",
-    definition: "The public feed where all cohort members log their failed attempts, ignored emails, and zero-engagement launches. Previously known as The Graveyard."
+    definition: "The public feed where all participants log their failed attempts, ignored emails, and zero-engagement launches. Previously known as The Graveyard."
   },
   {
     id: "async-cowardice",

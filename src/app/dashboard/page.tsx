@@ -100,8 +100,8 @@ export default function Dashboard() {
             <a 
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                 dbUser.declarationLocked && dbUser.declaration
-                  ? `I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
-                  : `I just signed up for Floptober 2026! One month. Four test runs. Zero dignity required.\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
+                  ? `I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin participants before Oct 1: https://floptober.netlify.app/`
+                  : `I just signed up for Floptober 2026! One month. Four test runs. Zero dignity required.\n\nJoin participants before Oct 1: https://floptober.netlify.app/`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

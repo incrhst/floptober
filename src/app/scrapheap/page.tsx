@@ -14,12 +14,12 @@ export default function PublicScrapheap() {
           <Link href="/" className="font-hand text-5xl text-flop-ink hover:text-flop-sea transition-colors">
             Floptober Scrapheap
           </Link>
-          <JoinButton>Join the Cohort</JoinButton>
+          <JoinButton>Join the Challenge</JoinButton>
         </div>
         
         <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 sm:p-8 shadow-chunk bg-white">
           <p className="font-body text-flop-ink/80 mb-8 font-bold text-lg">
-            This is the live, public feed of all failures, rejections, and zero-like launches from the Floptober 2026 cohort.
+            This is the live, public feed of all failures, rejections, and zero-like launches from the Floptober 2026 participants.
           </p>
           
           <div className="font-body text-flop-ink/80">
@@ -52,7 +52,7 @@ export default function PublicScrapheap() {
                 ))}
               </ul>
             ) : (
-              <p>No scrap here yet. The cohort is still preparing for battle.</p>
+              <p>No scrap here yet. The participants is still preparing for battle.</p>
             )}
           </div>
         </div>
