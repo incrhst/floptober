@@ -18,7 +18,12 @@ export function ClosingCall() {
           Sign up, pick your first embarrassment, and start filling the scrapheap.
         </p>
         <JoinButton>Join Him</JoinButton>
-        <p className="pt-6 font-hand text-lg text-flop-ink/50">Floptober — October, annually, forever.</p>
+        <div className="pt-6 flex flex-col gap-2 items-center">
+          <p className="font-hand text-lg text-flop-ink/50">Floptober — October, annually, forever.</p>
+          <a href="/glossary" className="font-body text-sm font-bold text-flop-ink/50 hover:text-flop-sea transition-colors underline decoration-2 underline-offset-4">
+            View the Glossary
+          </a>
+        </div>
       </div>
     </footer>);
 

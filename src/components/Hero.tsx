@@ -108,6 +108,7 @@ export function Hero() {
                 <a onClick={() => setIsMobileMenuOpen(false)} href="#principles" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Principles</a>
                 <a onClick={() => setIsMobileMenuOpen(false)} href="#sprints" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Test Runs</a>
                 <a onClick={() => setIsMobileMenuOpen(false)} href="#scoring" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Scoring</a>
+                <a onClick={() => setIsMobileMenuOpen(false)} href="/glossary" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Glossary</a>
                 <a onClick={() => setIsMobileMenuOpen(false)} href="/scrapheap" className="p-4 text-flop-crimson hover:text-flop-sea transition-colors">Public Scrapheap ↗</a>
               </motion.div>
             </div>
