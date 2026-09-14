@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useUser, UserButton } from "@clerk/nextjs";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 
 export default function Dashboard() {
   const { user, isLoaded } = useUser();
   const syncUser = useMutation(api.users.syncUser);
-  const logCheckInAI = useMutation(api.checkIns.logCheckInAI);
+  const logCheckInAI = useAction(api.checkIns.logCheckInAI);
   const saveDeclaration = useMutation(api.users.saveDeclaration);
   
   const [description, setDescription] = useState("");
@@ -35,7 +35,7 @@ export default function Dashboard() {
   const leaderboard = useQuery(api.users.getLeaderboard);
   
   if (!isLoaded || dbUser === undefined) return <div className="p-8 font-body">Loading...</div>;
-  if (!user) return <div className="p-8 font-body">Please sign in.</div>;
+  if (!user || dbUser === null) return <div className="p-8 font-body">Please sign in.</div>;
 
   async function handleDeclarationSubmit(e: React.FormEvent) {
     e.preventDefault();
