@@ -53,6 +53,38 @@ export const getUserCheckIns = query({
   },
 });
 
+export const getGlobalCheckIns = query({
+  args: {},
+  handler: async (ctx) => {
+    const checkIns = await ctx.db.query("checkIns").order("desc").take(50);
+    
+    // Enrich with user names
+    const enriched = await Promise.all(
+      checkIns.map(async (ci) => {
+        const user = await ctx.db.get(ci.userId);
+        return {
+          ...ci,
+          userName: user?.name || "Unknown Flopper",
+        };
+      })
+    );
+    
+    return enriched;
+  },
+});
+
+export const throwTomato = mutation({
+  args: { checkInId: v.id("checkIns") },
+  handler: async (ctx, args) => {
+    const checkIn = await ctx.db.get(args.checkInId);
+    if (!checkIn) throw new Error("Flop not found");
+    
+    await ctx.db.patch(args.checkInId, {
+      tomatoes: (checkIn.tomatoes || 0) + 1,
+    });
+  },
+});
+
 import { internalMutation, action } from "./_generated/server";
 import { internal } from "./_generated/api";
 import OpenAI from "openai";

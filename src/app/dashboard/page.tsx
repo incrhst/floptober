@@ -39,9 +39,8 @@ export default function Dashboard() {
     }
   }, [dbUser, initialized]);
 
-  const checkIns = useQuery(api.checkIns.getUserCheckIns, 
-    user ? { clerkId: user.id } : "skip"
-  );
+  const globalCheckIns = useQuery(api.checkIns.getGlobalCheckIns);
+  const throwTomato = useMutation(api.checkIns.throwTomato);
   
   const leaderboard = useQuery(api.users.getLeaderboard);
   
@@ -96,8 +95,8 @@ export default function Dashboard() {
             <a 
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                 dbUser.declarationLocked && dbUser.declaration
-                  ? `I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin us before Oct 1: https://floptober.netlify.app/`
-                  : `I just signed up for Floptober 2026! One month. Four test runs. Zero dignity required.\n\nJoin us before Oct 1: https://floptober.netlify.app/`
+                  ? `I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
+                  : `I just signed up for Floptober 2026! One month. Four test runs. Zero dignity required.\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -166,25 +165,36 @@ export default function Dashboard() {
             )}
             
             <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white">
-              <h2 className="font-hand text-3xl text-flop-crimson mb-4">Your Graveyard</h2>
+              <h2 className="font-hand text-3xl text-flop-crimson mb-4">Global Graveyard</h2>
               <div className="font-body text-flop-ink/80">
-                {checkIns === undefined ? (
+                {globalCheckIns === undefined ? (
                   <p>Loading corpses...</p>
-                ) : checkIns.length > 0 ? (
+                ) : globalCheckIns.length > 0 ? (
                   <ul className="flex flex-col gap-5">
-                    {checkIns.map((ci) => (
-                      <li key={ci._id} className="pb-4 border-b-2 border-flop-ink/10 last:border-0 last:pb-0 flex flex-col gap-2">
+                    {globalCheckIns.map((ci) => (
+                      <li key={ci._id} className="pb-4 border-b-2 border-flop-ink/10 last:border-0 last:pb-0 flex flex-col gap-2 relative group">
                         <div className="flex items-start gap-3">
                           <span className={`font-bold shrink-0 text-xl ${ci.pointsEarned > 0 ? 'text-flop-sea' : 'text-flop-crimson'}`}>
                             {ci.pointsEarned > 0 ? '+' : ''}{ci.pointsEarned} pts
                           </span>
-                          <span className="text-flop-ink mt-1 font-bold">"{ci.description}"</span>
+                          <span className="text-flop-ink mt-1 font-bold">
+                            <span className="opacity-60 font-normal mr-2">{ci.userName}:</span>
+                            "{ci.description}"
+                          </span>
                         </div>
                         {ci.judgment && (
                           <div className="ml-[70px] bg-flop-yellow/20 p-3 rounded-lg border-l-4 border-flop-yellow italic text-sm text-flop-ink">
                             <strong>The Judge says:</strong> {ci.judgment}
                           </div>
                         )}
+                        <div className="ml-[70px] mt-2 flex items-center">
+                          <button 
+                            onClick={() => throwTomato({ checkInId: ci._id })}
+                            className="flex items-center gap-2 bg-flop-cream/80 hover:bg-flop-cream px-3 py-1 rounded-full border-2 border-flop-ink/20 hover:border-flop-crimson hover:-translate-y-[1px] transition-all text-sm font-bold"
+                          >
+                            <span className="text-lg">🍅</span> {ci.tomatoes || 0}
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>

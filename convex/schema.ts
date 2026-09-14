@@ -20,6 +20,7 @@ export default defineSchema({
     description: v.string(),
     proofUrl: v.optional(v.string()),
     judgment: v.optional(v.string()),
+    tomatoes: v.optional(v.number()),
     createdAt: v.number(),
   }).index("by_user", ["userId"]),
 });
