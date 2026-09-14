@@ -149,20 +149,22 @@ export function Hero() {
                 One month. Four test runs. Zero dignity required.
               </p>
               
-              <div className="max-w-md space-y-2">
-                <div className="flex justify-between font-body text-sm font-bold text-flop-ink/80">
-                  <span>Spots Claimed</span>
-                  <span>{userCount !== undefined ? userCount : "..."} / {maxUsers}</span>
+              {userCount !== undefined && userCount >= 15 && (
+                <div className="max-w-md space-y-2">
+                  <div className="flex justify-between font-body text-sm font-bold text-flop-ink/80">
+                    <span>Spots Claimed</span>
+                    <span>{displayCount} / {maxUsers}</span>
+                  </div>
+                  <div className="h-4 w-full bg-white border-2 border-flop-ink/30 rounded-full overflow-hidden relative">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: `${percentage}%` }}
+                      transition={{ duration: 1.5, ease: "easeOut" }}
+                      className="absolute top-0 left-0 h-full bg-flop-sea" 
+                    />
+                  </div>
                 </div>
-                <div className="h-4 w-full bg-white border-2 border-flop-ink/30 rounded-full overflow-hidden relative">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${percentage}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="absolute top-0 left-0 h-full bg-flop-sea" 
-                  />
-                </div>
-              </div>
+              )}
             </div>
           </motion.div>
 
