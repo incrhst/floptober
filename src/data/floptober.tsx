@@ -1,3 +1,6 @@
+import React from 'react';
+import { Term } from '@/components/Term';
+
 export interface Principle {
   icon: string;
   iconAlt: string;
@@ -10,7 +13,7 @@ export interface Sprint {
   week: string;
   title: string;
   theme: string;
-  body: string;
+  body: React.ReactNode;
 }
 
 export interface ScoreRow {
@@ -45,7 +48,7 @@ export const sprints: Sprint[] = [
   week: 'Week One',
   title: 'The Public Flop',
   theme: 'Cringe & Visibility',
-  body: 'Break identity attachment by publishing raw, unedited takes or demos publicly. Hard rule: zero apologies, caveats, or disclaimers allowed.'
+  body: <>Break <Term id="identity-attachment">identity attachment</Term> by publishing raw, unedited takes or demos publicly. Hard rule: zero apologies, caveats, or disclaimers allowed.</>
 },
 {
   index: '02',
