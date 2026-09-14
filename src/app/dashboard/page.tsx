@@ -125,6 +125,14 @@ export default function Dashboard() {
           <div>
             <h1 className="font-hand text-5xl text-flop-ink">Command Center</h1>
             <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
+            <a 
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-3 text-sm font-bold text-flop-sea hover:text-flop-crimson transition-colors underline decoration-2 underline-offset-4"
+            >
+              Share your mission on X (Twitter) ↗
+            </a>
           </div>
           <UserButton />
         </div>
