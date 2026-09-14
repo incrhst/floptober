@@ -25,6 +25,8 @@ export default function Dashboard() {
       syncUser({
         clerkId: user.id,
         name: user.fullName || user.firstName || "Anonymous Flopper",
+        firstName: user.firstName || undefined,
+        lastName: user.lastName || undefined,
         email: user.primaryEmailAddress?.emailAddress || "",
       });
     }

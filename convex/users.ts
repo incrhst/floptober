@@ -5,6 +5,8 @@ export const syncUser = mutation({
   args: {
     clerkId: v.string(),
     name: v.string(),
+    firstName: v.optional(v.string()),
+    lastName: v.optional(v.string()),
     email: v.string(),
   },
   handler: async (ctx, args) => {
@@ -14,12 +16,21 @@ export const syncUser = mutation({
       .first();
 
     if (existing) {
+      // If we didn't have their name split out before, patch it now
+      if (!existing.firstName && args.firstName) {
+        await ctx.db.patch(existing._id, {
+          firstName: args.firstName,
+          lastName: args.lastName,
+        });
+      }
       return existing._id;
     }
 
     return await ctx.db.insert("users", {
       clerkId: args.clerkId,
       name: args.name,
+      firstName: args.firstName,
+      lastName: args.lastName,
       email: args.email,
       totalPoints: 0,
     });
