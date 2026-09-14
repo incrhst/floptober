@@ -1,5 +1,6 @@
 import React from 'react';
-import { SignUpButton, Show } from '@clerk/nextjs';
+import { SignUpButton } from '@clerk/nextjs';
+import { Show } from './Show';
 import Link from 'next/link';
 
 interface JoinButtonProps {

@@ -3,12 +3,21 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { JoinButton } from './JoinButton';
 import { graveyardImage } from '../data/floptober';
-
-import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs';
+import { SignInButton, UserButton } from '@clerk/nextjs';
+import { Show } from './Show';
+import { useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
 export function Hero() {
+  const userCount = useQuery(api.users.getTotalUserCount);
+  const maxUsers = 500;
+  
+  // Cap at 500 for the visual bar even if it exceeds
+  const displayCount = userCount !== undefined ? Math.min(userCount, maxUsers) : 0;
+  const percentage = (displayCount / maxUsers) * 100;
+
   return (
     <header className="relative overflow-hidden bg-flop-yellow bg-dots">
       <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-8">
@@ -79,9 +88,24 @@ export function Hero() {
 
             <div className="mt-9" id="join">
               <JoinButton>Join Him</JoinButton>
-              <p className="mt-4 font-body text-sm font-semibold text-flop-ink/60">
+              <p className="mt-4 font-body text-sm font-semibold text-flop-ink/60 mb-6">
                 One month. Four test runs. Zero dignity required.
               </p>
+              
+              <div className="max-w-md space-y-2">
+                <div className="flex justify-between font-body text-sm font-bold text-flop-ink/80">
+                  <span>Spots Claimed</span>
+                  <span>{userCount !== undefined ? userCount : "..."} / {maxUsers}</span>
+                </div>
+                <div className="h-4 w-full bg-white border-2 border-flop-ink/30 rounded-full overflow-hidden relative">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${percentage}%` }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="absolute top-0 left-0 h-full bg-flop-sea" 
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
 
