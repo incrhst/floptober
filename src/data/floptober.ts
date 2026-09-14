@@ -106,8 +106,8 @@ export const personas: Persona[] = [
     description: "You're terrified of cold outreach or posting your high-ticket pricing publicly because you dread being left on 'read'."
   },
   {
-    title: 'The Hardware Hacker',
-    description: "You're tinkering indefinitely with rough breadboards and 3D prints, dreading the feedback on a non-factory-grade enclosure."
+    title: 'The Open-Source Tinkerer',
+    description: "You've built a niche CLI tool or a tiny web framework that solves a real problem, but you're terrified to post it on Hacker News because the comments might tear it apart."
   },
   {
     title: 'The Course Creator',
