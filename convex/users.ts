@@ -60,13 +60,13 @@ export const saveDeclaration = mutation({
 
     if (!user) throw new Error("User not found");
     
-    // Check if it is before October 1st
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const oct1 = new Date(currentYear, 9, 1); // 9 is October (0-indexed)
+    // Check if it is before October 1st, Jamaica Time (UTC-5)
+    // Oct 1st 00:00 Jamaica Time = Oct 1st 05:00 UTC
+    const currentYear = new Date().getUTCFullYear();
+    const deadline = new Date(Date.UTC(currentYear, 9, 1, 5, 0, 0));
     
-    if (now > oct1) {
-      throw new Error("The deadline to declare (October 1st) has passed!");
+    if (Date.now() > deadline.getTime()) {
+      throw new Error("The deadline to declare (October 1st, Jamaica Time) has passed!");
     }
 
     await ctx.db.patch(user._id, {

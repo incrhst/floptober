@@ -79,7 +79,7 @@ export default function Dashboard() {
           </div>
           <p className="font-body text-lg text-flop-ink/80 mb-6">
             Before you can access the command center, you must declare what you are going to attempt this Floptober. <br/><br/>
-            <strong>Deadline: October 1st.</strong> Once locked in, it cannot be changed.
+            <strong>Deadline: October 1st (Jamaica Time).</strong> Once locked in, it cannot be changed.
           </p>
           <form onSubmit={handleDeclarationSubmit} className="flex flex-col gap-4 font-body">
             <textarea 
