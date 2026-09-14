@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Nunito:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-flop-yellow: #e9c93e;
+  --color-flop-yellowDeep: #d8b52f;
+  --color-flop-ink: #2b2622;
+  --color-flop-crimson: #d34766;
+  --color-flop-sea: #2e6f9e;
+  --color-flop-cream: #faf7ee;
+  --color-flop-moss: #6f8f4f;
+  --color-flop-dust: #b9a89a;
+  
+  --font-hand: "Gochi Hand", cursive;
+  --font-body: Nunito, ui-sans-serif, system-ui, sans-serif;
+  
+  --shadow-chunk: 0 6px 0 0 rgba(43, 38, 34, 0.22);
+  --shadow-chunkSm: 0 4px 0 0 rgba(43, 38, 34, 0.22);
+  --shadow-press: 0 2px 0 0 rgba(43, 38, 34, 0.22);
+  --shadow-sea: 0 6px 0 0 #2e6f9e;
+  --shadow-seaPress: 0 2px 0 0 #2e6f9e;
+  
+  --radius-blob: 1.75rem;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(43, 38, 34, 0.15) 2px, transparent 2px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-paper {
+  background-image: 
+    linear-gradient(rgba(43, 38, 34, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43, 38, 34, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.texture-graveyard {
+  position: relative;
+  z-index: 1;
+}
+.texture-graveyard::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('/graveyard-texture.png');
+  background-size: 800px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  opacity: 0.15;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+  z-index: -1; 
+}

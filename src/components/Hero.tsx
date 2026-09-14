@@ -1,7 +1,10 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { JoinButton } from './JoinButton';
 import { graveyardImage } from '../data/floptober';
+
+import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs';
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
@@ -11,23 +14,35 @@ export function Hero() {
       <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-8">
         <nav aria-label="Primary" className="flex items-center justify-between gap-4">
           <span className="font-hand text-xl text-flop-ink">Floptober</span>
-          <ul className="hidden items-center gap-7 font-body text-sm font-bold uppercase tracking-[0.14em] text-flop-ink/70 sm:flex">
-            <li>
-              <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#principles">
-                Principles
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#sprints">
-                Test Runs
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#scoring">
-                Scoring
-              </a>
-            </li>
-          </ul>
+          <div className="flex items-center gap-7">
+            <ul className="hidden items-center gap-7 font-body text-sm font-bold uppercase tracking-[0.14em] text-flop-ink/70 sm:flex">
+              <li>
+                <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#principles">
+                  Principles
+                </a>
+              </li>
+              <li>
+                <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#sprints">
+                  Test Runs
+                </a>
+              </li>
+              <li>
+                <a className="transition-colors duration-150 ease-out hover:text-flop-crimson" href="#scoring">
+                  Scoring
+                </a>
+              </li>
+            </ul>
+            <div className="flex items-center gap-4 font-body font-bold text-sm text-flop-ink">
+              <Show when="signed-out">
+                <SignInButton mode="modal">
+                  <button className="hover:text-flop-crimson">Sign In</button>
+                </SignInButton>
+              </Show>
+              <Show when="signed-in">
+                <UserButton />
+              </Show>
+            </div>
+          </div>
         </nav>
 
         <div className="grid items-center gap-10 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:pt-14">
