@@ -134,10 +134,26 @@ export function Hero() {
             <h1 className="font-hand text-[clamp(3.5rem,11vw,8.5rem)] leading-[0.85] text-flop-ink">
               Floptober<sup className="text-[0.3em] align-super text-flop-crimson ml-1">2026</sup>
             </h1>
-            <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-flop-ink/85 sm:text-xl">
-              <span className="font-hand text-2xl text-flop-crimson">The rules:</span> the objective is
-              simple... desensitize you to rejection, public embarrassment, and half-baked launches.
+            <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-flop-ink/85 sm:text-xl font-bold">
+              The objective is simple: desensitize participants to rejection, public embarrassment, and half-baked launches.
             </p>
+            <details className="mt-4 max-w-xl group cursor-pointer">
+              <summary className="font-hand text-2xl text-flop-crimson hover:text-flop-sea transition-colors list-none flex items-center gap-2 outline-none">
+                <span>What exactly is Floptober?</span>
+                <span className="text-flop-ink/40 text-xl group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div className="mt-4 font-body text-base sm:text-lg text-flop-ink/85 space-y-4 leading-relaxed bg-white border-2 border-flop-ink/30 rounded-lg p-5 shadow-sm">
+                <p>
+                  Floptober is a month-long, anti-perfectionism challenge for builders, creators, and tinkerers who are paralyzed by the fear of launching.
+                </p>
+                <p>
+                  Instead of striving for polished perfection, participants commit to launching ugly, half-baked, and raw projects for 31 days. The ultimate goal is to break <Term id="identity-attachment">Identity Attachment</Term>—the assumption that your personal self-worth is tied to the success of the things you build.
+                </p>
+                <p>
+                  By gamifying failure and logging our worst launches in the <Term id="scrapheap">Scrapheap</Term>, we forcefully desensitize ourselves to rejection so we can finally stop polishing and start shipping.
+                </p>
+              </div>
+            </details>
 
             <div className="mt-8 inline-block -rotate-[1.2deg]">
               <div className="rounded-blob border-[3px] border-flop-ink/85 bg-flop-cream px-7 py-6 shadow-chunk sm:px-10 sm:py-8">
