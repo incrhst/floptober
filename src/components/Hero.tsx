@@ -13,9 +13,12 @@ const ease = [0.23, 1, 0.32, 1] as const;
 export function Hero() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const userCount = useQuery(api.users.getTotalUserCount);
-  const maxUsers = 500;
   
-  // Cap at 500 for the visual bar even if it exceeds
+  // Launch Phase 1: Cap at 100 to manufacture early urgency. 
+  // (We can bump this to 500 later for "overwhelming demand")
+  const maxUsers = 100;
+  
+  // Cap for the visual bar even if it temporarily exceeds
   const displayCount = userCount !== undefined ? Math.min(userCount, maxUsers) : 0;
   const percentage = (displayCount / maxUsers) * 100;
 
@@ -149,7 +152,7 @@ export function Hero() {
                 One month. Four test runs. Zero dignity required.
               </p>
               
-              {userCount !== undefined && userCount >= 15 && (
+              {userCount !== undefined && userCount >= 10 && (
                 <div className="max-w-md space-y-2">
                   <div className="flex justify-between font-body text-sm font-bold text-flop-ink/80">
                     <span>Spots Claimed</span>

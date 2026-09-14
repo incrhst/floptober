@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Floptober 2026 - 500 Spots Only'
+export const alt = 'Floptober 2026 - 100 Spots Only'
 export const size = {
   width: 1200,
   height: 630,
@@ -66,7 +66,7 @@ export default async function Image() {
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            WARNING: ONLY 500 SPOTS
+            WARNING: ONLY 100 SPOTS
           </p>
           <p style={{ 
             fontSize: '36px', 
