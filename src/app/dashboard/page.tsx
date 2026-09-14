@@ -4,6 +4,7 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { sprints } from "@/data/floptober";
+import Link from "next/link";
 
 export default function Dashboard() {
   const { user, isLoaded } = useUser();
@@ -88,6 +89,9 @@ export default function Dashboard() {
       <div className="mx-auto max-w-5xl">
         <div className="flex justify-between items-start sm:items-center mb-10 flex-col sm:flex-row gap-4">
           <div>
+            <Link href="/" className="font-hand text-xl text-flop-ink/50 hover:text-flop-sea transition-colors mb-2 inline-block">
+              ← Back to Floptober
+            </Link>
             <h1 className="font-hand text-5xl text-flop-ink">Command Center</h1>
             {dbUser.declarationLocked && (
               <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
