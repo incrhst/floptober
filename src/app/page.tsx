@@ -4,6 +4,7 @@ import { Principles } from '../components/Principles';
 import { Sprints } from '../components/Sprints';
 import { Scoring } from '../components/Scoring';
 import { ClosingCall } from '../components/ClosingCall';
+import { BackToTop } from '../components/BackToTop';
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
         <Scoring />
       </main>
       <ClosingCall />
+      <BackToTop />
     </div>
   );
 }
