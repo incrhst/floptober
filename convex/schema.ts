@@ -7,6 +7,7 @@ export default defineSchema({
     name: v.string(),
     email: v.string(),
     totalPoints: v.number(),
+    declaration: v.optional(v.string()),
   }).index("by_clerk_id", ["clerkId"]),
   
   checkIns: defineTable({

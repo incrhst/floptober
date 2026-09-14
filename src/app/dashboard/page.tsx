@@ -8,8 +8,10 @@ export default function Dashboard() {
   const { user, isLoaded } = useUser();
   const syncUser = useMutation(api.users.syncUser);
   const logCheckInAI = useMutation(api.checkIns.logCheckInAI);
+  const saveDeclaration = useMutation(api.users.saveDeclaration);
   
   const [description, setDescription] = useState("");
+  const [declarationInput, setDeclarationInput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -22,14 +24,31 @@ export default function Dashboard() {
     }
   }, [user, syncUser]);
 
+  const dbUser = useQuery(api.users.getCurrentUser, 
+    user ? { clerkId: user.id } : "skip"
+  );
+
   const checkIns = useQuery(api.checkIns.getUserCheckIns, 
     user ? { clerkId: user.id } : "skip"
   );
   
   const leaderboard = useQuery(api.users.getLeaderboard);
   
-  if (!isLoaded) return <div className="p-8 font-body">Loading...</div>;
+  if (!isLoaded || dbUser === undefined) return <div className="p-8 font-body">Loading...</div>;
   if (!user) return <div className="p-8 font-body">Please sign in.</div>;
+
+  async function handleDeclarationSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!declarationInput.trim()) return;
+    setIsSubmitting(true);
+    try {
+      await saveDeclaration({ clerkId: user!.id, declaration: declarationInput });
+    } catch (e: any) {
+      alert(e.message || "Failed to save declaration.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   async function handleCheckIn(e: React.FormEvent) {
     e.preventDefault();
@@ -49,11 +68,47 @@ export default function Dashboard() {
     }
   }
 
+  // Check if they need to declare
+  if (!dbUser.declaration) {
+    return (
+      <div className="min-h-full w-full bg-flop-cream p-8 flex items-center justify-center">
+        <div className="max-w-2xl w-full border-[3px] border-flop-ink/80 rounded-blob p-8 shadow-chunk bg-white">
+          <div className="flex justify-between items-start mb-6">
+            <h1 className="font-hand text-5xl text-flop-ink">Declare Your Flop</h1>
+            <UserButton />
+          </div>
+          <p className="font-body text-lg text-flop-ink/80 mb-6">
+            Before you can access the command center, you must declare what you are going to attempt this Floptober. <br/><br/>
+            <strong>Deadline: October 1st.</strong> Once locked in, it cannot be changed.
+          </p>
+          <form onSubmit={handleDeclarationSubmit} className="flex flex-col gap-4 font-body">
+            <textarea 
+              value={declarationInput}
+              onChange={e => setDeclarationInput(e.target.value)}
+              placeholder="e.g., I am going to build a SaaS for hamsters and cold-email 50 pet stores."
+              className="w-full border-2 border-flop-ink/30 rounded-lg p-4 outline-none focus:border-flop-sea transition-colors min-h-[150px] text-lg"
+              required
+            />
+            <button 
+              disabled={isSubmitting}
+              type="submit"
+              className="mt-2 bg-flop-crimson text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all self-start">
+              {isSubmitting ? "Locking it in..." : "Lock In Declaration"}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-full w-full bg-flop-cream p-8">
       <div className="mx-auto max-w-5xl">
         <div className="flex justify-between items-center mb-10">
-          <h1 className="font-hand text-5xl text-flop-ink">Command Center</h1>
+          <div>
+            <h1 className="font-hand text-5xl text-flop-ink">Command Center</h1>
+            <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
+          </div>
           <UserButton />
         </div>
         
