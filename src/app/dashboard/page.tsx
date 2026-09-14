@@ -90,16 +90,19 @@ export default function Dashboard() {
             {dbUser.declarationLocked && (
               <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
             )}
-            {dbUser.declarationLocked && (
-              <a 
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-3 text-sm font-bold text-flop-sea hover:text-flop-crimson transition-colors underline decoration-2 underline-offset-4"
-              >
-                Share your mission on X (Twitter) ↗
-              </a>
-            )}
+            
+            <a 
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                dbUser.declarationLocked && dbUser.declaration
+                  ? `I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
+                  : `I just signed up for Floptober 2026! One month. Four test runs. Zero dignity required.\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 px-4 py-2 bg-flop-ink text-flop-cream rounded-full font-bold text-sm hover:-translate-y-[1px] hover:shadow-[0_2px_0_0_#2b2622] transition-all"
+            >
+              Share on X (Twitter) ↗
+            </a>
           </div>
           <UserButton />
         </div>
