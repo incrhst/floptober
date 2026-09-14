@@ -15,7 +15,7 @@ export function ClosingCall() {
           Losers launch. <span className="text-flop-crimson">Winners learn.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl font-body text-lg text-flop-ink/75 sm:text-xl">
-          Sign up, pick your first embarrassment, and start filling the graveyard.
+          Sign up, pick your first embarrassment, and start filling the scrapheap.
         </p>
         <JoinButton>Join Him</JoinButton>
         <p className="pt-6 font-hand text-lg text-flop-ink/50">Floptober — October, annually, forever.</p>

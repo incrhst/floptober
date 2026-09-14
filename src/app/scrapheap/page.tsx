@@ -4,7 +4,7 @@ import { api } from "../../../convex/_generated/api";
 import { JoinButton } from "@/components/JoinButton";
 import Link from "next/link";
 
-export default function PublicGraveyard() {
+export default function PublicScrapheap() {
   const globalCheckIns = useQuery(api.checkIns.getGlobalCheckIns);
 
   return (
@@ -12,7 +12,7 @@ export default function PublicGraveyard() {
       <div className="mx-auto max-w-3xl">
         <div className="flex justify-between items-center mb-10">
           <Link href="/" className="font-hand text-5xl text-flop-ink hover:text-flop-sea transition-colors">
-            Floptober Graveyard
+            Floptober Scrapheap
           </Link>
           <JoinButton>Join the Cohort</JoinButton>
         </div>
@@ -24,7 +24,7 @@ export default function PublicGraveyard() {
           
           <div className="font-body text-flop-ink/80">
             {globalCheckIns === undefined ? (
-              <p>Loading corpses...</p>
+              <p>Loading scrap...</p>
             ) : globalCheckIns.length > 0 ? (
               <ul className="flex flex-col gap-6">
                 {globalCheckIns.map((ci) => (
@@ -52,7 +52,7 @@ export default function PublicGraveyard() {
                 ))}
               </ul>
             ) : (
-              <p>No corpses here yet. The cohort is still preparing for battle.</p>
+              <p>No scrap here yet. The cohort is still preparing for battle.</p>
             )}
           </div>
         </div>

@@ -165,10 +165,10 @@ export default function Dashboard() {
             )}
             
             <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white">
-              <h2 className="font-hand text-3xl text-flop-crimson mb-4">Global Graveyard</h2>
+              <h2 className="font-hand text-3xl text-flop-crimson mb-4">The Scrapheap</h2>
               <div className="font-body text-flop-ink/80">
                 {globalCheckIns === undefined ? (
-                  <p>Loading corpses...</p>
+                  <p>Loading scrap...</p>
                 ) : globalCheckIns.length > 0 ? (
                   <ul className="flex flex-col gap-5">
                     {globalCheckIns.map((ci) => (
@@ -199,7 +199,7 @@ export default function Dashboard() {
                     ))}
                   </ul>
                 ) : (
-                  <p>No corpses here yet. Go fail at something!</p>
+                  <p>No scrap here yet. Go fail at something!</p>
                 )}
               </div>
             </div>

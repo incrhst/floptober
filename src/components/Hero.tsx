@@ -123,7 +123,7 @@ export function Hero() {
               
             </div>
             <figcaption className="mt-3 text-center font-hand text-lg text-flop-ink/70">
-              The Graveyard, currently accepting donations.
+              The Scrapheap, currently accepting donations.
             </figcaption>
           </motion.figure>
         </div>
