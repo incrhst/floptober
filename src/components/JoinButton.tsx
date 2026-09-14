@@ -13,10 +13,10 @@ export function JoinButton({ children, className = '' }: JoinButtonProps) {
   return (
     <>
       <Show when="signed-out">
-        <SignUpButton mode="modal" asChild>
-          <button className={baseClasses}>
+        <SignUpButton mode="modal">
+          <span className={`${baseClasses} cursor-pointer`}>
             {children}
-          </button>
+          </span>
         </SignUpButton>
       </Show>
       <Show when="signed-in">

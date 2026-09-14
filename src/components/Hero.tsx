@@ -34,8 +34,8 @@ export function Hero() {
             </ul>
             <div className="flex items-center gap-4 font-body font-bold text-sm text-flop-ink">
               <Show when="signed-out">
-                <SignInButton mode="modal" asChild>
-                  <button className="hover:text-flop-crimson">Sign In</button>
+                <SignInButton mode="modal">
+                  <span className="hover:text-flop-crimson cursor-pointer">Sign In</span>
                 </SignInButton>
               </Show>
               <Show when="signed-in">
