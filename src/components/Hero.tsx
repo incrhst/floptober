@@ -1,6 +1,6 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { JoinButton } from './JoinButton';
 import { graveyardImage } from '../data/floptober';
 import { SignInButton, UserButton } from '@clerk/nextjs';
@@ -11,6 +11,7 @@ import { api } from "../../convex/_generated/api";
 const ease = [0.23, 1, 0.32, 1] as const;
 
 export function Hero() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const userCount = useQuery(api.users.getTotalUserCount);
   const maxUsers = 500;
   
@@ -19,8 +20,8 @@ export function Hero() {
   const percentage = (displayCount / maxUsers) * 100;
 
   return (
-    <header className="relative overflow-hidden bg-flop-yellow bg-dots">
-      <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-8">
+    <header className="relative bg-flop-yellow bg-dots">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-10 pt-8 relative z-10">
         <nav aria-label="Primary" className="flex items-center justify-between gap-4">
           <span className="font-hand text-xl text-flop-ink">Floptober</span>
           <div className="flex items-center gap-7">
@@ -50,9 +51,65 @@ export function Hero() {
               <Show when="signed-in">
                 <UserButton />
               </Show>
+              
+              <button 
+                className="sm:hidden text-flop-ink p-1"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  {isMobileMenuOpen ? (
+                    <>
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </>
+                  ) : (
+                    <>
+                      <line x1="4" x2="20" y1="12" y2="12" />
+                      <line x1="4" x2="20" y1="6" y2="6" />
+                      <line x1="4" x2="20" y1="18" y2="18" />
+                    </>
+                  )}
+                </svg>
+              </button>
             </div>
           </div>
         </nav>
+
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <div className="sm:hidden fixed inset-0 z-[100] flex justify-end">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="absolute inset-0 bg-flop-ink/40 backdrop-blur-sm"
+              />
+              <motion.div 
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative w-64 bg-flop-cream h-full shadow-2xl border-l-[3px] border-flop-ink flex flex-col pt-20 px-6 font-body font-bold uppercase tracking-wider text-sm gap-2"
+              >
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="absolute top-8 right-6 text-flop-ink"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                </button>
+                <a onClick={() => setIsMobileMenuOpen(false)} href="#principles" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Principles</a>
+                <a onClick={() => setIsMobileMenuOpen(false)} href="#sprints" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Test Runs</a>
+                <a onClick={() => setIsMobileMenuOpen(false)} href="#scoring" className="p-4 border-b-2 border-flop-ink/10 hover:text-flop-sea transition-colors">Scoring</a>
+                <a onClick={() => setIsMobileMenuOpen(false)} href="/scrapheap" className="p-4 text-flop-crimson hover:text-flop-sea transition-colors">Public Scrapheap ↗</a>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
         <div className="grid items-center gap-10 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:pt-14">
           <motion.div
