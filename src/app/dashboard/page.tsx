@@ -119,26 +119,56 @@ export default function Dashboard() {
             </div>
           </div>
           
-          <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white lg:col-span-1 h-fit">
-            <h2 className="font-hand text-3xl text-flop-sea mb-4">Leaderboard</h2>
-            <div className="font-body text-flop-ink/80">
-              {leaderboard === undefined ? (
-                <p>Loading...</p>
-              ) : leaderboard.length > 0 ? (
-                <ul className="flex flex-col gap-3">
-                  {leaderboard.map((u, i) => (
-                    <li key={u._id} className="flex justify-between items-center pb-2 border-b-2 border-flop-ink/10 last:border-0 last:pb-0">
-                      <div className="flex items-center gap-3">
-                        <span className="font-bold text-flop-ink/40 w-4">{i + 1}.</span>
-                        <span className="font-bold truncate max-w-[120px]" title={u.name}>{u.name}</span>
-                      </div>
-                      <span className="font-bold text-flop-sea">{u.totalPoints}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No players yet.</p>
-              )}
+          <div className="flex flex-col gap-8 lg:col-span-1">
+            <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white h-fit">
+              <h2 className="font-hand text-3xl text-flop-sea mb-4">Leaderboard</h2>
+              <div className="font-body text-flop-ink/80">
+                {leaderboard === undefined ? (
+                  <p>Loading...</p>
+                ) : leaderboard.length > 0 ? (
+                  <ul className="flex flex-col gap-3">
+                    {leaderboard.map((u, i) => (
+                      <li key={u._id} className="flex justify-between items-center pb-2 border-b-2 border-flop-ink/10 last:border-0 last:pb-0">
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-flop-ink/40 w-4">{i + 1}.</span>
+                          <span className="font-bold truncate max-w-[120px]" title={u.name}>{u.name}</span>
+                        </div>
+                        <span className="font-bold text-flop-sea">{u.totalPoints}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No players yet.</p>
+                )}
+              </div>
+            </div>
+            
+            <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white h-fit">
+              <h2 className="font-hand text-3xl text-flop-moss mb-4">Schedule</h2>
+              <ul className="font-body text-flop-ink/80 flex flex-col gap-4 mb-6">
+                <li>
+                  <span className="font-bold block">Week 1: The Public Flop</span>
+                  <span className="text-sm">Oct 1, 9:00 AM</span>
+                </li>
+                <li>
+                  <span className="font-bold block">Week 2: The Janky Prototype</span>
+                  <span className="text-sm">Oct 8, 9:00 AM</span>
+                </li>
+                <li>
+                  <span className="font-bold block">Week 3: The Rejection Gauntlet</span>
+                  <span className="text-sm">Oct 15, 9:00 AM</span>
+                </li>
+                <li>
+                  <span className="font-bold block">Week 4: The Eulogy & Re-Up</span>
+                  <span className="text-sm">Oct 22, 9:00 AM</span>
+                </li>
+              </ul>
+              
+              <a 
+                href="/api/calendar" 
+                className="inline-block text-center w-full bg-flop-cream text-flop-ink px-4 py-2 rounded-full font-bold uppercase tracking-wider text-xs border-[2px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] transition-all">
+                Add to Calendar (.ics)
+              </a>
             </div>
           </div>
         </div>

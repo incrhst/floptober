@@ -9,6 +9,8 @@
  */
 
 import type * as checkIns from "../checkIns.js";
+import type * as crons from "../crons.js";
+import type * as emails from "../emails.js";
 import type * as users from "../users.js";
 
 import type {
@@ -19,6 +21,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   checkIns: typeof checkIns;
+  crons: typeof crons;
+  emails: typeof emails;
   users: typeof users;
 }>;
 
