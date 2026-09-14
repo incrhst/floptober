@@ -34,7 +34,7 @@ export const principles: Principle[] = [
 {
   icon: "/68d2c940-0bd5-4155-b0fa-7cd67b9db85b.jpg",
   iconAlt: 'Doodle of a leaning gravestone with a cable trailing out of the dirt',
-  title: 'The Graveyard',
+  title: 'The Scrapheap',
   body: 'Every dead project, ignored cold email, or zero-engagement post gets cataloged.'
 }];
 
@@ -90,8 +90,8 @@ export interface Persona {
 
 export const personas: Persona[] = [
   {
-    title: 'The Bedroom Producer',
-    description: "Your hard drive is a graveyard of 8-bar loops. You're convinced you can't drop a track until a pro mixes it."
+    title: "The Perfectionist Producer",
+    description: "Your hard drive is a scrapheap of 8-bar loops. You're convinced you can't drop a track until a pro mixes it."
   },
   {
     title: 'The Stealth-Mode Dev',
