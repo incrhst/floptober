@@ -14,6 +14,7 @@ export default function Dashboard() {
   const [declarationInput, setDeclarationInput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [initialized, setInitialized] = useState(false);
+  const [justSaved, setJustSaved] = useState(false);
 
   const dbUser = useQuery(api.users.getCurrentUser, 
     user ? { clerkId: user.id } : "skip"
@@ -51,7 +52,10 @@ export default function Dashboard() {
     setIsSubmitting(true);
     try {
       await saveDeclaration({ clerkId: user!.id, declaration: declarationInput, isDraft });
-      if (isDraft) alert("Draft saved!");
+      if (isDraft) {
+        setJustSaved(true);
+        setTimeout(() => setJustSaved(false), 2000);
+      }
     } catch (e: any) {
       alert(e.message || "Failed to save declaration.");
     } finally {
@@ -77,89 +81,84 @@ export default function Dashboard() {
     }
   }
 
-  // Check if they need to lock in their declaration
-  if (!dbUser.declarationLocked) {
-    return (
-      <div className="min-h-full w-full bg-flop-cream p-8 flex items-center justify-center">
-        <div className="max-w-2xl w-full border-[3px] border-flop-ink/80 rounded-blob p-8 shadow-chunk bg-white">
-          <div className="flex justify-between items-start mb-6">
-            <h1 className="font-hand text-5xl text-flop-ink">Declare Your Flop</h1>
-            <UserButton />
-          </div>
-          <p className="font-body text-lg text-flop-ink/80 mb-6">
-            Before you can access the command center, you must declare what you are going to attempt this Floptober. <br/><br/>
-            <strong>Deadline: October 1st (Jamaica Time).</strong> Once locked in, it cannot be changed.
-          </p>
-          <div className="flex flex-col gap-4 font-body">
-            <textarea 
-              value={declarationInput}
-              onChange={e => setDeclarationInput(e.target.value)}
-              placeholder="e.g., I am going to build a SaaS for hamsters and cold-email 50 pet stores."
-              className="w-full border-2 border-flop-ink/30 rounded-lg p-4 outline-none focus:border-flop-sea transition-colors min-h-[150px] text-lg"
-              required
-            />
-            <div className="flex gap-4 mt-2">
-              <button 
-                disabled={isSubmitting}
-                onClick={(e) => handleDeclarationSubmit(e, true)}
-                className="bg-flop-cream text-flop-ink px-6 py-4 rounded-full font-bold uppercase tracking-widest border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all">
-                {isSubmitting ? "Saving..." : "Save Draft"}
-              </button>
-              <button 
-                disabled={isSubmitting}
-                onClick={(e) => handleDeclarationSubmit(e, false)}
-                className="bg-flop-crimson text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all flex-1">
-                {isSubmitting ? "Locking it in..." : "Lock In Declaration"}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-full w-full bg-flop-cream p-8">
       <div className="mx-auto max-w-5xl">
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex justify-between items-start sm:items-center mb-10 flex-col sm:flex-row gap-4">
           <div>
             <h1 className="font-hand text-5xl text-flop-ink">Command Center</h1>
-            <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
-            <a 
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-3 text-sm font-bold text-flop-sea hover:text-flop-crimson transition-colors underline decoration-2 underline-offset-4"
-            >
-              Share your mission on X (Twitter) ↗
-            </a>
+            {dbUser.declarationLocked && (
+              <p className="font-body text-flop-ink/60 font-bold mt-2">Mission: {dbUser.declaration}</p>
+            )}
+            {dbUser.declarationLocked && (
+              <a 
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just committed to Floptober! My mission for the next 4 weeks: ${dbUser.declaration}\n\nJoin the cohort before Oct 1: https://floptober.netlify.app/`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-3 text-sm font-bold text-flop-sea hover:text-flop-crimson transition-colors underline decoration-2 underline-offset-4"
+              >
+                Share your mission on X (Twitter) ↗
+              </a>
+            )}
           </div>
           <UserButton />
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 flex flex-col gap-8">
-            <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 sm:p-8 shadow-chunk bg-white">
-              <h2 className="font-hand text-3xl text-flop-sea mb-4">Submit for Judgment</h2>
-              <form onSubmit={handleCheckIn} className="flex flex-col gap-4 font-body">
-                <div>
-                  <label className="block text-sm font-bold text-flop-ink/80 mb-2">What did you do?</label>
+            {!dbUser.declarationLocked ? (
+              <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 sm:p-8 shadow-chunk bg-white">
+                <h2 className="font-hand text-3xl text-flop-ink mb-2">Declare Your Flop</h2>
+                <p className="font-body text-sm text-flop-ink/80 mb-6 font-bold">
+                  Deadline: October 1st (Jamaica Time). You cannot log attempts until your mission is locked in!
+                </p>
+                <div className="flex flex-col gap-4 font-body">
                   <textarea 
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    placeholder="e.g., Launched my broken side project on Twitter and got 0 likes. Then I cold emailed 10 people and they all said no."
-                    className="w-full border-2 border-flop-ink/30 rounded-lg p-3 outline-none focus:border-flop-sea transition-colors min-h-[120px]"
+                    value={declarationInput}
+                    onChange={e => setDeclarationInput(e.target.value)}
+                    placeholder="e.g., I am going to build a SaaS for hamsters and cold-email 50 pet stores."
+                    className="w-full border-2 border-flop-ink/30 rounded-lg p-4 outline-none focus:border-flop-sea transition-colors min-h-[150px] text-lg"
                     required
                   />
+                  <div className="flex flex-col sm:flex-row gap-4 mt-2">
+                    <button 
+                      disabled={isSubmitting}
+                      onClick={(e) => handleDeclarationSubmit(e, true)}
+                      className="bg-flop-cream text-flop-ink px-6 py-4 rounded-full font-bold uppercase tracking-widest border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all flex-1">
+                      {isSubmitting ? "Saving..." : justSaved ? "✓ Saved" : "Save Draft"}
+                    </button>
+                    <button 
+                      disabled={isSubmitting}
+                      onClick={(e) => handleDeclarationSubmit(e, false)}
+                      className="bg-flop-crimson text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all flex-1">
+                      {isSubmitting ? "Locking it in..." : "Lock In"}
+                    </button>
+                  </div>
                 </div>
-                <button 
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="mt-2 bg-flop-yellow text-flop-ink px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all self-start flex items-center gap-2">
-                  {isSubmitting ? "The Judge is thinking..." : "Face the Judge"}
-                </button>
-              </form>
-            </div>
+              </div>
+            ) : (
+              <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 sm:p-8 shadow-chunk bg-white">
+                <h2 className="font-hand text-3xl text-flop-sea mb-4">Submit for Judgment</h2>
+                <form onSubmit={handleCheckIn} className="flex flex-col gap-4 font-body">
+                  <div>
+                    <label className="block text-sm font-bold text-flop-ink/80 mb-2">What did you do?</label>
+                    <textarea 
+                      value={description}
+                      onChange={e => setDescription(e.target.value)}
+                      placeholder="e.g., Launched my broken side project on Twitter and got 0 likes. Then I cold emailed 10 people and they all said no."
+                      className="w-full border-2 border-flop-ink/30 rounded-lg p-3 outline-none focus:border-flop-sea transition-colors min-h-[120px]"
+                      required
+                    />
+                  </div>
+                  <button 
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="mt-2 bg-flop-yellow text-flop-ink px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all self-start flex items-center gap-2">
+                    {isSubmitting ? "The Judge is thinking..." : "Face the Judge"}
+                  </button>
+                </form>
+              </div>
+            )}
             
             <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white">
               <h2 className="font-hand text-3xl text-flop-crimson mb-4">Your Graveyard</h2>
