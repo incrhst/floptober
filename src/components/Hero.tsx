@@ -74,7 +74,7 @@ export function Hero() {
             </h1>
             <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-flop-ink/85 sm:text-xl">
               <span className="font-hand text-2xl text-flop-crimson">The rules:</span> the objective is
-              simple — desensitize the cohort to rejection, public embarrassment, and half-baked launches.
+              simple — desensitize you to rejection, public embarrassment, and half-baked launches.
             </p>
 
             <div className="mt-8 inline-block -rotate-[1.2deg]">
