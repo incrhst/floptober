@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Nunito:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -11,8 +10,8 @@
   --color-flop-moss: #6f8f4f;
   --color-flop-dust: #b9a89a;
   
-  --font-hand: "Gochi Hand", cursive;
-  --font-body: Nunito, ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-hand), cursive;
+  --font-body: var(--font-body), system-ui, sans-serif;
   
   --shadow-chunk: 0 6px 0 0 rgba(43, 38, 34, 0.22);
   --shadow-chunkSm: 0 4px 0 0 rgba(43, 38, 34, 0.22);
