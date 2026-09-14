@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { useQuery, useMutation, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import { sprints } from "@/data/floptober";
 
 export default function Dashboard() {
   const { user, isLoaded } = useUser();
@@ -232,22 +233,20 @@ export default function Dashboard() {
             <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 shadow-chunk bg-white h-fit">
               <h2 className="font-hand text-3xl text-flop-moss mb-4">Schedule</h2>
               <ul className="font-body text-flop-ink/80 flex flex-col gap-4 mb-6">
-                <li>
-                  <span className="font-bold block">Week 1: The Public Flop</span>
-                  <span className="text-sm">Oct 1, 9:00 AM</span>
-                </li>
-                <li>
-                  <span className="font-bold block">Week 2: The Janky Prototype</span>
-                  <span className="text-sm">Oct 8, 9:00 AM</span>
-                </li>
-                <li>
-                  <span className="font-bold block">Week 3: The Rejection Gauntlet</span>
-                  <span className="text-sm">Oct 15, 9:00 AM</span>
-                </li>
-                <li>
-                  <span className="font-bold block">Week 4: The Eulogy & Re-Up</span>
-                  <span className="text-sm">Oct 22, 9:00 AM</span>
-                </li>
+                {sprints.map((sprint, i) => (
+                  <li key={sprint.index} className="border-b-2 border-flop-ink/10 pb-3 last:border-0 last:pb-0">
+                    <details className="group cursor-pointer">
+                      <summary className="font-bold list-none flex justify-between items-center outline-none">
+                        <span>Week {i + 1}: {sprint.title}</span>
+                        <span className="text-flop-ink/40 group-open:rotate-180 transition-transform">▼</span>
+                      </summary>
+                      <div className="mt-2 text-sm">
+                        <p className="text-flop-sea font-bold mb-1">{sprint.theme}</p>
+                        <p className="opacity-90 leading-relaxed">{sprint.body}</p>
+                      </div>
+                    </details>
+                  </li>
+                ))}
               </ul>
               
               <a 
