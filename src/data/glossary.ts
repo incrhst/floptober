@@ -2,7 +2,7 @@ export const glossaryTerms = [
   {
     id: "identity-attachment",
     term: "Identity Attachment",
-    definition: "The toxic belief that your personal self-worth is directly tied to the success, polish, or reception of the thing you built. Breaking this delusion is the primary goal of Floptober."
+    definition: "The paralyzing assumption that your personal self-worth is directly tied to the success, polish, or reception of the thing you built. Breaking this delusion is the primary goal of Floptober."
   },
   {
     id: "scrapheap",
