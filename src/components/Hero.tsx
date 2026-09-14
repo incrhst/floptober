@@ -70,7 +70,7 @@ export function Hero() {
               </p>
             </div>
             <h1 className="font-hand text-[clamp(3.5rem,11vw,8.5rem)] leading-[0.85] text-flop-ink">
-              Floptober 2026
+              Floptober<sup className="text-[0.45em] align-super text-flop-crimson ml-1">2026</sup>
             </h1>
             <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-flop-ink/85 sm:text-xl">
               <span className="font-hand text-2xl text-flop-crimson">The rules:</span> the objective is
