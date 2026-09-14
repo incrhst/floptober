@@ -15,6 +15,7 @@ export default defineSchema({
     pointsEarned: v.number(),
     description: v.string(),
     proofUrl: v.optional(v.string()),
+    judgment: v.optional(v.string()),
     createdAt: v.number(),
   }).index("by_user", ["userId"]),
 });

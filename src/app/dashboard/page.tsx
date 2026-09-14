@@ -7,10 +7,9 @@ import { api } from "../../../convex/_generated/api";
 export default function Dashboard() {
   const { user, isLoaded } = useUser();
   const syncUser = useMutation(api.users.syncUser);
-  const logCheckIn = useMutation(api.checkIns.logCheckIn);
+  const logCheckInAI = useMutation(api.checkIns.logCheckInAI);
   
   const [description, setDescription] = useState("");
-  const [points, setPoints] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -37,14 +36,14 @@ export default function Dashboard() {
     if (!description.trim()) return;
     setIsSubmitting(true);
     try {
-      await logCheckIn({
+      await logCheckInAI({
         clerkId: user!.id,
         sprintIndex: "Test Run",
-        pointsEarned: Number(points),
         description,
       });
       setDescription("");
-      setPoints(1);
+    } catch (e) {
+      alert("Error logging attempt. Have you set OPENROUTER_API_KEY in Convex?");
     } finally {
       setIsSubmitting(false);
     }
@@ -61,37 +60,23 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 flex flex-col gap-8">
             <div className="border-[3px] border-flop-ink/80 rounded-blob p-6 sm:p-8 shadow-chunk bg-white">
-              <h2 className="font-hand text-3xl text-flop-sea mb-4">Log a Test Run</h2>
+              <h2 className="font-hand text-3xl text-flop-sea mb-4">Submit for Judgment</h2>
               <form onSubmit={handleCheckIn} className="flex flex-col gap-4 font-body">
                 <div>
                   <label className="block text-sm font-bold text-flop-ink/80 mb-2">What did you do?</label>
-                  <input 
-                    type="text" 
+                  <textarea 
                     value={description}
                     onChange={e => setDescription(e.target.value)}
-                    placeholder="e.g., Launched my broken side project on Twitter"
-                    className="w-full border-2 border-flop-ink/30 rounded-lg p-3 outline-none focus:border-flop-sea transition-colors"
+                    placeholder="e.g., Launched my broken side project on Twitter and got 0 likes. Then I cold emailed 10 people and they all said no."
+                    className="w-full border-2 border-flop-ink/30 rounded-lg p-3 outline-none focus:border-flop-sea transition-colors min-h-[120px]"
                     required
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-flop-ink/80 mb-2">Points Claimed</label>
-                  <select 
-                    value={points}
-                    onChange={e => setPoints(Number(e.target.value))}
-                    className="w-full border-2 border-flop-ink/30 rounded-lg p-3 outline-none focus:border-flop-sea transition-colors bg-white">
-                    <option value={1}>1 pt: Messy first draft (internal)</option>
-                    <option value={3}>3 pts: Explicit rejection (Direct Outreach)</option>
-                    <option value={5}>5 pts: Live experiment met with silence</option>
-                    <option value={10}>10 pts: Public crash-and-burn</option>
-                    <option value={-10}>-10 pts: Still sitting in drafts (Penalty)</option>
-                  </select>
                 </div>
                 <button 
                   disabled={isSubmitting}
                   type="submit"
-                  className="mt-2 bg-flop-yellow text-flop-ink px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all self-start">
-                  {isSubmitting ? "Logging..." : "Log Attempt"}
+                  className="mt-2 bg-flop-yellow text-flop-ink px-6 py-3 rounded-full font-bold uppercase tracking-widest text-sm border-[3px] border-flop-ink shadow-press hover:-translate-y-[2px] hover:shadow-[0_4px_0_0_#2b2622] disabled:opacity-50 transition-all self-start flex items-center gap-2">
+                  {isSubmitting ? "The Judge is thinking..." : "Face the Judge"}
                 </button>
               </form>
             </div>
@@ -102,13 +87,20 @@ export default function Dashboard() {
                 {checkIns === undefined ? (
                   <p>Loading corpses...</p>
                 ) : checkIns.length > 0 ? (
-                  <ul className="flex flex-col gap-3">
+                  <ul className="flex flex-col gap-5">
                     {checkIns.map((ci) => (
-                      <li key={ci._id} className="pb-3 border-b-2 border-flop-ink/10 last:border-0 last:pb-0 flex items-start gap-3">
-                        <span className={`font-bold shrink-0 ${ci.pointsEarned > 0 ? 'text-flop-sea' : 'text-flop-crimson'}`}>
-                          {ci.pointsEarned > 0 ? '+' : ''}{ci.pointsEarned} pts
-                        </span>
-                        <span className="text-flop-ink">{ci.description}</span>
+                      <li key={ci._id} className="pb-4 border-b-2 border-flop-ink/10 last:border-0 last:pb-0 flex flex-col gap-2">
+                        <div className="flex items-start gap-3">
+                          <span className={`font-bold shrink-0 text-xl ${ci.pointsEarned > 0 ? 'text-flop-sea' : 'text-flop-crimson'}`}>
+                            {ci.pointsEarned > 0 ? '+' : ''}{ci.pointsEarned} pts
+                          </span>
+                          <span className="text-flop-ink mt-1 font-bold">"{ci.description}"</span>
+                        </div>
+                        {ci.judgment && (
+                          <div className="ml-[70px] bg-flop-yellow/20 p-3 rounded-lg border-l-4 border-flop-yellow italic text-sm text-flop-ink">
+                            <strong>The Judge says:</strong> {ci.judgment}
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>
