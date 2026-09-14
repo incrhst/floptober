@@ -8,6 +8,7 @@ export default defineSchema({
     email: v.string(),
     totalPoints: v.number(),
     declaration: v.optional(v.string()),
+    declarationLocked: v.optional(v.boolean()),
   }).index("by_clerk_id", ["clerkId"]),
   
   checkIns: defineTable({

@@ -51,6 +51,7 @@ export const saveDeclaration = mutation({
   args: {
     clerkId: v.string(),
     declaration: v.string(),
+    isDraft: v.boolean(),
   },
   handler: async (ctx, args) => {
     const user = await ctx.db
@@ -59,6 +60,7 @@ export const saveDeclaration = mutation({
       .first();
 
     if (!user) throw new Error("User not found");
+    if (user.declarationLocked) throw new Error("Your declaration is already locked!");
     
     // Check if it is before October 1st, Jamaica Time (UTC-5)
     // Oct 1st 00:00 Jamaica Time = Oct 1st 05:00 UTC
@@ -71,6 +73,7 @@ export const saveDeclaration = mutation({
 
     await ctx.db.patch(user._id, {
       declaration: args.declaration,
+      declarationLocked: !args.isDraft,
     });
   },
 });
