@@ -66,11 +66,11 @@ export function Hero() {
                 className="h-14 w-14 sm:h-16 sm:w-16 object-contain"
               />
               <p className="font-hand text-2xl text-flop-sea sm:text-3xl">
-                David Bain would like to invite you to his
+                David Bain would like to invite you to
               </p>
             </div>
             <h1 className="font-hand text-[clamp(3.5rem,11vw,8.5rem)] leading-[0.85] text-flop-ink">
-              Floptober
+              Floptober 2026
             </h1>
             <p className="mt-6 max-w-xl font-body text-lg leading-relaxed text-flop-ink/85 sm:text-xl">
               <span className="font-hand text-2xl text-flop-crimson">The rules:</span> the objective is

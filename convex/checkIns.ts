@@ -75,7 +75,6 @@ export const insertCheckInInternal = internalMutation({
 
     await ctx.db.insert("checkIns", {
       userId: user._id,
-      clerkId: args.clerkId,
       sprintIndex: args.sprintIndex,
       pointsEarned: args.pointsEarned,
       description: args.description,
